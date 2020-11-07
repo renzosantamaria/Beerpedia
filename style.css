@@ -133,11 +133,17 @@ a:hover{
 
 /* ----------------------------------SECTION INFO---------------------*/
 
-.info-contet{
+.info-contet-wrapper{
     display: grid;
     grid-template-columns: 2fr;
     
 }
+
+.info-content{
+    display: flex;
+    justify-content: center;
+}
+
 
 .info-beer-card{
     padding: 0 80px;
@@ -173,7 +179,6 @@ a:hover{
 }
 
 .search-main {
-    width:510px;
     height:400px;
  
     display:flex;

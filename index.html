@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beer Catalog</title>
+    <!-- Här är en font som kan passa bra till logotypen ==> font-family: 'Great Vibes', cursive; -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- Här är en annan font som vi skulle kunna använda till rubriker ==> font-family: 'Rouge Script', cursive; -->
+    <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo-wrapper">
+            <p class="logo">Beerpedia</p>
+        </div>
+        <div class="btn-wrapper">
+            <button class="header-btn">Home</button>
+            <button class="header-btn">Search</button>
+            <button class="header-btn">Info</button>
+        </div>
+
+
+    </header>
+
+    <section class="home">
+        <div class="home-content-wrapper">
+            <div class="home-contet">
+
+                <div class="home-beer-card">
+                    <div class="home-beer-card-pic">
+                        <img class="beer-card-img" src="" alt="No image available,sorry!">
+                    </div>
+                    <div class="home-beer-card-name">
+                        <p></p>
+                        <a class="see-more">See more...</a>
+                    </div>
+                </div>
+
+                <div class="home-beer-card-text">
+                    <p>Can´t decide wich one you <br> want to drink <br> today?</p>
+                </div>
+
+                <div class="home-random-beer-button">
+                    <button>Show me a random beer</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="search hidden">
+        <div class="search-content-wrapper">
+
+        </div>
+
+        <div class="search-header">
+            <img src="35123-52815.png">
+        </div>
+        <main class="search-main">
+            <h2>Vad letar du efter?</h2>
+            <form>
+                <input type="text" placeholder="Search..." name="search"> 
+            </form>
+        </main>
+        
+    </section>
+    <section class="info hidden">
+        <div class="info-content-wrapper">
+            <div class="info-content">
+                <div class="info-beer-card">
+                    <img class="info-beer-card-img" src="" alt="">
+                </div>
+            </div>
+            
+            <div class="info-beer-information"></div>
+        </div>
+    </section>
+    <script src="main.js"></script>
+</body>
+</html>

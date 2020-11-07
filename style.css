@@ -1,0 +1,265 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.home,
+.info{
+    height: 90vh;
+    padding: 0 12%;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #023436;
+    background-color: rgba(0, 0, 0, 0.803);
+    color: #048980;
+
+}
+
+.logo-wrapper{
+    padding-top: 5px;
+}
+
+.btn-wrapper{
+    display: flex;
+    align-items: center;
+    padding-right: 40px;
+}
+
+.header-btn{
+    margin-left: 34px;
+    padding:  4px 10px;
+    border-radius: 6px;
+    border: 1px solid #000c0b;
+    font-size: 14px;
+    background-color: #048980;
+    color: black;
+}
+
+.header-btn:hover{
+    cursor: pointer;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
+}
+
+.logo{
+    font-family: 'Great Vibes', cursive;
+    font-size: 46px;
+}
+
+
+
+/*----------------------------- SECTION HOME -------------------------*/
+
+.home-content-wrapper,
+.info-content-wrapper{
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+}
+.home-contet{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 400px 160px 60px;
+}
+.home-beer-card{
+    display: grid;
+    width: 340px;
+    grid-template-rows: 1fr;
+    grid-template-rows: auto auto;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+.home-beer-card-pic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-beer-card-name p:nth-child(1){
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.beer-card-img{
+    height: 260px;
+}
+
+.home-beer-card-name{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+
+
+.home-beer-card-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 24px;
+}
+
+.home-random-beer-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.see-more{
+    font-style: italic;
+    font-size: 14px;
+}
+.see-more:hover{
+    cursor: pointer;
+}
+
+
+/* ----------------------------------SECTION INFO---------------------*/
+
+.info-contet{
+    display: grid;
+    grid-template-columns: 2fr;
+    
+}
+
+.info-beer-card{
+    padding: 0 80px;
+}
+
+.info-beer-information{
+    max-width: 500px;
+}
+
+.info-beer-information li{
+    list-style: none;
+    margin-bottom: 14px;
+}
+
+
+/* ------------------------------------------------------- SECTION SEARCH PAGE --------------------------------------------------*/
+
+.search-content-wrapper{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.search-header {
+    margin-top:5vh;
+    display:flex;
+    justify-content:center;
+}
+
+.search-header > img {
+    width:30%;
+}
+
+.search-main {
+    width:510px;
+    height:400px;
+ 
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.search-main h2 {
+    margin-top:2vh;
+    font-size:42px;
+    font-family:'Rouge Script';
+    color:#048980;
+}
+
+
+.search-main form input {
+    margin-top:10vh;
+    height:40px;
+    width:500px;
+    text-align:center;
+    font-size:20px;
+    background-color:rgba(0, 0, 0, 0.803);
+    color:#048980;
+    
+}
+
+::placeholder {
+    color:#048980;
+    opacity:1; 
+}
+
+/* -----------------------------test css button */
+
+
+
+
+/* RESPONSIVE DESIGN--------------------------------------- */
+@media screen and (max-width: 760px){
+
+    header{
+        padding: 0 8px;
+    } 
+
+    .logo{
+        font-size: 30px;
+    }
+    .header-btn {
+        margin-left: 12px;
+    }
+
+    .info-content-wrapper{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+
+        /* justify-content: center;
+        padding: 60px 0; */
+    }
+
+    .info-content{
+        margin-bottom: 30px;
+    }
+
+    .btn-wrapper {
+        padding-right: 0;
+    }
+
+    .btn-wrapper button{
+        font-size: 10px;
+
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-wrapper button:nth-child(3){
+        display: none;
+    }
+
+    .beer-card-img{
+        max-width: 200px;
+    }
+
+    .info-beer-information{
+        display: grid;
+        margin: 0 auto;
+        max-width: 320px;
+    }
+
+}

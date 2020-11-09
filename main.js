@@ -8,6 +8,9 @@ function hideAllSections() {
 }
 
 
+// console.log(response)
+
+
 let btn = document.querySelectorAll(".btn-wrapper button")//TAR KNAPPARNA HOME, SEARCH OCH INFO
 let currentClass;
 for (let i = 0; i < btn.length; i++) {
@@ -19,21 +22,42 @@ for (let i = 0; i < btn.length; i++) {
     })
 }
 
+let dataRandomBeer = []
+// console.log(dataRandomBeer.name)
+
 async function randomBeer() {
+    dataRandomBeer = []
     const request = await fetch(`https://api.punkapi.com/v2/beers/random`)
     const response = await request.json()
+    dataRandomBeer.push(
+        {"name" : response[0].name},
+        {"abv" : response[0].abv},
+        {"description" : response[0].description},
+        {"volume_value" : response[0].volume.value},
+        {"food_pairing" : response[0].food_pairing},
+        {"brewers_tips" : response[0].brewers_tips},
+        {"ingredients" : response[0].ingredients}
+        )
+    if (response[0].image_url != null) {
+        dataRandomBeer.push({"picture" : response[0].image_url} ) 
+    }
+    if (response[0].image_url === null){
+        dataRandomBeer.push({"picture" : "images/baby-yoda.jpeg"} )
+    }
+        
     return response
 }
+//randomBeer()
 
-async function printRandomBeer(){
-    let testRandomBeerPrint = await randomBeer()
 
-    if (testRandomBeerPrint[0].image_url != null) {
-        document.querySelector(".beer-card-img").src = testRandomBeerPrint[0].image_url
-        document.querySelector(".info-beer-card-img").src = testRandomBeerPrint[0].image_url
+
+function fillTheInfo(source) {
+    if (source[0].image_url != null) {
+        document.querySelector(".beer-card-img").src = source[0].image_url
+        document.querySelector(".info-beer-card-img").src = source[0].image_url
         document.querySelector(".info-beer-card-img").style = "max-height: 400px"
     }
-    if (testRandomBeerPrint[0].image_url === null) {
+    if (source[0].image_url === null) {
         console.log("we got a null!");
 
         //Landing page beer card
@@ -41,20 +65,55 @@ async function printRandomBeer(){
         document.querySelector(".beer-card-img").style = "max-width: 300px"
         //Info page beer card
         document.querySelector(".info-beer-card-img").src = "images/baby-yoda.jpeg"
-        document.querySelector(".info-beer-card-img").style = "max-height: 400px"
-        document.querySelector(".info-beer-card-img").style = "max-width: 300px"
+        document.querySelector(".info-beer-card-img").style = "max-height: 400px; max-width: 300px"
     }
+
+    var a = document.getElementsByClassName("info-beer-information")[0]
+    a.innerHTML = "<ul>"
+    //all information om ölen som visas under INFO page
+    a.innerHTML += "<li>" + "<strong> Name: </strong>" + source[0].name + "</li>"
+    a.innerHTML += "<li>" + "<strong> Alcohol by volume: </strong>" + source[0].abv + "</li>"
+    a.innerHTML += "<li>" + "<strong> Description: </strong>" + source[0].description + "</li>"
+    a.innerHTML += "<li>" + "<strong> Volume: </strong>" + source[0].volume.value + " " + source[0].volume.unit + "</li>"
+    a.innerHTML += "<li>" + "<strong> Food pairing : </strong>" + source[0].food_pairing + "</li>"
+    a.innerHTML += "<li>" + "<strong> Brewer tips : </strong>" + source[0].brewers_tips + "</li>"
+    a.innerHTML += "<li>" + "" + "</li>"
+    a.innerHTML += "<li>" + "<strong> Ingredients: </strong>" + source[0].ingredients + "</li>"
+}
+
+async function printRandomBeer(){
+    let testRandomBeerPrint = await randomBeer()
+    fillTheInfo(testRandomBeerPrint)
+    
     document.querySelector(".home-beer-card-name p").innerHTML = testRandomBeerPrint[0].name
-
-
+    return testRandomBeerPrint
 }
 printRandomBeer()
+
 document.querySelector(".home-random-beer-button").addEventListener("click", printRandomBeer)
 
 
 async function print(desiredFetch) {
     let randomBeerFetch = await desiredFetch
- 
+
+    // fillTheInfo(randomBeerFetch)
+
+    if (randomBeerFetch[0].image_url != null) {
+        // document.querySelector(".beer-card-img").src = randomBeerFetch[0].image_url
+        document.querySelector(".info-beer-card-img").src = randomBeerFetch[0].image_url
+        document.querySelector(".info-beer-card-img").style = "max-height: 400px"
+    }
+    if (randomBeerFetch[0].image_url === null) {
+        console.log("we got a null!");
+
+        //Landing page beer card
+        // document.querySelector(".beer-card-img").src = "images/baby-yoda.jpeg"
+        // document.querySelector(".beer-card-img").style = "max-width: 300px"
+        //Info page beer card
+        document.querySelector(".info-beer-card-img").src = "images/baby-yoda.jpeg"
+        document.querySelector(".info-beer-card-img").style = "max-height: 400px; max-width: 300px"
+    }
+
     var a = document.getElementsByClassName("info-beer-information")[0]
     a.innerHTML = "<ul>"
     //all information om ölen som visas under INFO page
@@ -68,17 +127,33 @@ async function print(desiredFetch) {
     a.innerHTML += "<li>" + "<strong> Ingredients: </strong>" + randomBeerFetch[0].ingredients + "</li>"
 
 }
-print(randomBeer());
-
-
-
+//print(randomBeer());
 
 
 function seeMore() {
     hideAllSections()
+    document.querySelector(".info-beer-card-img").src = dataRandomBeer[7].picture
+    var a = document.getElementsByClassName("info-beer-information")[0]
+    a.innerHTML = "<ul>"
+    //all information om ölen som visas under INFO page
+    a.innerHTML += "<li>" + "<strong> Name: </strong>" + dataRandomBeer[0].name + "</li>"
+    a.innerHTML += "<li>" + "<strong> Alcohol by volume: </strong>" + dataRandomBeer[1].abv + "</li>"
+    a.innerHTML += "<li>" + "<strong> Description: </strong>" + dataRandomBeer[2].description + "</li>"
+    a.innerHTML += "<li>" + "<strong> Volume: </strong>" + dataRandomBeer[3].volume_value + " liters" + "</li>"
+    a.innerHTML += "<li>" + "<strong> Food pairing : </strong>" + dataRandomBeer[4].food_pairing + "</li>"
+    a.innerHTML += "<li>" + "<strong> Brewer tips : </strong>" + dataRandomBeer[5].brewers_tips + "</li>"
+    a.innerHTML += "<li>" + "" + "</li>"
+    a.innerHTML += "<li>" + "<strong> Ingredients: </strong>" + dataRandomBeer[6].ingredients + "</li>"
+    console.log(dataRandomBeer)
+   
+    //skriva ut de sparade informationen om random beer card på info page
     document.querySelector(".info").classList.remove("hidden")
 }
 document.querySelector(".see-more").addEventListener("click", seeMore)
+
+
+
+
 
 
 
@@ -125,7 +200,7 @@ let createList = async function (userInput) {
       
     //makes the list clickable
     for (let i = 0; i < list.length; i++) {
-        console.log("hello")
+        // console.log("hello")
         list[i].addEventListener("click", function () {
             print(fetchBySearch(list[i].innerHTML));
             seeMore();

@@ -9,6 +9,7 @@
     <!-- Här är en annan font som vi skulle kunna använda till rubriker ==> font-family: 'Rouge Script', cursive; -->
     <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/418b840756.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -18,7 +19,6 @@
         <div class="btn-wrapper">
             <button class="header-btn">Home</button>
             <button class="header-btn">Search</button>
-            <button class="header-btn">Info</button>
         </div>
 
 
@@ -51,19 +51,20 @@
     </section>
     <section class="search hidden">
         <div class="search-content-wrapper">
+            <div class="search-header">
+                <img src="35123-52815.png">
+            </div>
+            <main class="search-main">
+                <h2>Vad letar du efter?</h2>
+                <form>
+                    <input type="text" placeholder="Search..."> 
+                    <i class="fas fa-search"></i>
+                </form>
+                <!-- <nav class="nav-search">
 
+                </nav> -->
+            </main>
         </div>
-
-        <div class="search-header">
-            <img src="35123-52815.png">
-        </div>
-        <main class="search-main">
-            <h2>Vad letar du efter?</h2>
-            <form>
-                <input type="text" placeholder="Search..." name="search"> 
-            </form>
-        </main>
-        
     </section>
     <section class="info hidden">
         <div class="info-content-wrapper">
@@ -72,7 +73,7 @@
                     <img class="info-beer-card-img" src="" alt="">
                 </div>
             </div>
-            
+
             <div class="info-beer-information"></div>
         </div>
     </section>

@@ -210,6 +210,35 @@ a:hover{
     opacity:1; 
 }
 
+.fa-search {
+    position:relative;
+    right:3vh;
+    color:#048980;
+}
+
+ul {
+    list-style-type:none;
+}
+
+.li-form {
+    width:500px;
+    height:40px;
+    background-color:rgba(0, 0, 0, 0.803);
+    color:#048980;
+    margin-right:2.2vh;
+}
+
+
+.li-form:hover {
+    background-color:#c3c9c7;
+    cursor:pointer;
+}
+
+
+/* ------------------------------------------------------- SECTION SEARCH PAGE --------------------------------------------------*/
+
+
+
 /* -----------------------------test css button */
 
 

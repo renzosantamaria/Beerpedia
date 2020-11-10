@@ -296,4 +296,21 @@ ul {
         max-width: 320px;
     }
 
+    .search-main h2{
+        font-size: 32px;
+    }
+
+    .search-main form input {
+        width: 300px;
+        font-size: 14px;
+    }
+
+    .search-main form{
+        display: contents;
+    }
+
+    .fa-search:before {
+    display: none;
+    }
+
 }

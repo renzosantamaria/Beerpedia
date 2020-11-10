@@ -78,7 +78,9 @@ function fillTheInfo(source) {
     a.innerHTML += "<li>" + "<strong> Food pairing : </strong>" + source[0].food_pairing + "</li>"
     a.innerHTML += "<li>" + "<strong> Brewer tips : </strong>" + source[0].brewers_tips + "</li>"
     a.innerHTML += "<li>" + "" + "</li>"
-    a.innerHTML += "<li>" + "<strong> Ingredients: </strong>" + source[0].ingredients + "</li>"
+    // a.innerHTML += "<li>" + "<strong> Ingredients: </strong>" + source[0].ingredients + "</li>"
+    
+    
 }
 
 async function printRandomBeer(){
@@ -124,13 +126,31 @@ async function print(desiredFetch) {
     a.innerHTML += "<li>" + "<strong> Food pairing : </strong>" + randomBeerFetch[0].food_pairing + "</li>"
     a.innerHTML += "<li>" + "<strong> Brewer tips : </strong>" + randomBeerFetch[0].brewers_tips + "</li>"
     a.innerHTML += "<li>" + "" + "</li>"
-    a.innerHTML += "<li>" + "<strong> Ingredients: </strong>" + randomBeerFetch[0].ingredients + "</li>"
+    // a.innerHTML += "<li>" + "<strong> Ingredients: </strong>" + randomBeerFetch[0].ingredients + "</li>"
+
+    let theHops = ""
+    let theMalt = ""
+    let coma = ", "
+    for (let i = 0; i < randomBeerFetch[0].ingredients.hops.length; i++) {
+        theHops += randomBeerFetch[0].ingredients.hops[i].name + coma
+        // console.log(theHops)
+    }
+    for (let i = 0; i < randomBeerFetch[0].ingredients.malt.length; i++) {
+        theMalt += randomBeerFetch[0].ingredients.malt[i].name + coma
+        // console.log(theMalt)
+    }
+    a.innerHTML += "<li>" + "<strong> Ingredients: <br> </strong>" + "<u><i>Hops</i></u>: " + theHops.slice(0, -2) + '.' + "<br>" + "<u><i>Malt</i></u>: " + theMalt.slice(0, -2) + '.' + "</li>"
+    a.innerHTML += "<li>" + "<strong> Yeast : </strong>" + randomBeerFetch[0].ingredients.yeast + "</li>"
 
 }
 //print(randomBeer());
 
 
 function seeMore() {
+    let theHops = ""
+    let theMalt = ""
+    let coma = ", "
+
     hideAllSections()
     document.querySelector(".info-beer-card-img").src = dataRandomBeer[7].picture
     var a = document.getElementsByClassName("info-beer-information")[0]
@@ -142,9 +162,20 @@ function seeMore() {
     a.innerHTML += "<li>" + "<strong> Volume: </strong>" + dataRandomBeer[3].volume_value + " liters" + "</li>"
     a.innerHTML += "<li>" + "<strong> Food pairing : </strong>" + dataRandomBeer[4].food_pairing + "</li>"
     a.innerHTML += "<li>" + "<strong> Brewer tips : </strong>" + dataRandomBeer[5].brewers_tips + "</li>"
-    a.innerHTML += "<li>" + "" + "</li>"
-    a.innerHTML += "<li>" + "<strong> Ingredients: </strong>" + dataRandomBeer[6].ingredients + "</li>"
-    console.log(dataRandomBeer)
+    
+    for (let i = 0; i < dataRandomBeer[6].ingredients.hops.length; i++) {
+        theHops += dataRandomBeer[6].ingredients.hops[i].name + coma
+        // console.log(theHops)
+    }
+    for (let i = 0; i < dataRandomBeer[6].ingredients.malt.length; i++) {
+        theMalt += dataRandomBeer[6].ingredients.malt[i].name + coma
+        // console.log(theMalt)
+    }
+    a.innerHTML += "<li>" + "<strong> Ingredients: <br> </strong>" + "<u><i>Hops</i></u>: " + theHops.slice(0, -2) + '.' + "<br>" + "<u><i>Malt</i></u>: " + theMalt.slice(0, -2) + '.' + "</li>"
+    a.innerHTML += "<li>" + "<strong> Yeast : </strong>" + dataRandomBeer[6].ingredients.yeast + "</li>"
+    
+
+    // console.log(dataRandomBeer)
    
     //skriva ut de sparade informationen om random beer card på info page
     document.querySelector(".info").classList.remove("hidden")
@@ -210,27 +241,27 @@ let createList = async function (userInput) {
 
 let hideList = function() {
     if(searchInput.value.length == 0) {
-
+        
         for(let i = 0; i < list.length; i++) {
-      
             list[i].remove();
         }
-        
     }
-    else {
-
-        for(let i = 0; i < list.length; i++) {
-            list[i].style.display = "";
-        }
-    }
+    // else{
+    //     for(let i = 0; i < list.length; i++) {
+    //         list[i].style.display = "";
+    //     }
+    // }
 }
 
-
 searchInput.addEventListener("keyup", function () {
-
     createList(searchInput.value);
     hideList();
 })
+      
+        
+
+
+
 
 
 

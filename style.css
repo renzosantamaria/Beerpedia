@@ -132,6 +132,10 @@ a:hover{
     font-size: 16px;
 }
 
+.home-random-beer-button button:hover{
+    cursor: pointer;
+}
+
 
 .see-more{
     font-style: italic;

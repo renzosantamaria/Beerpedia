@@ -309,8 +309,22 @@ ul {
         display: contents;
     }
 
+    .search-main ul{
+        width: 300px;
+    }
+
     .fa-search:before {
     display: none;
     }
+
+    .li-form {
+        width: 300px;
+        height: 40px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+    }
+
 
 }

@@ -218,11 +218,14 @@ a:hover{
 }
 
 .search-wrapper-content-image,
-.search-wrapper-content-search-box,
-.filter-wrapper{
+.search-wrapper-content-search-box{
     /* border: 2px solid red; */
     padding: 20px 10px;
     
+}
+
+.filter-wrapper{
+    padding-bottom: 20px;
 }
 
 .search-wrapper-content-image{
@@ -245,7 +248,6 @@ a:hover{
 .advanced-search-container{
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 12px;
 }
 
 .regular-search{

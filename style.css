@@ -196,7 +196,7 @@ a:hover{
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    margin-left:-300px;
+    /* margin-left:-300px; */
 }
 
 .search-header {

@@ -201,10 +201,14 @@ var searchInput = document.querySelector(".regular-search");
 var list;
 
 
-let fetchBySearch = async function (userInput) {
-    let root = "https://api.punkapi.com/v2/beers?beer_name=";
+let fetchBySearch = async function (userInput, advancedSr) {
+    if(advancedSr == undefined) {
+        advancedSr = "";
+    }
+    let root = "https://api.punkapi.com/v2/beers?beer_name=" + userInput + "&" + advancedSr + "&per_page=4";
+    console.log(root)
 
-    let request = await fetch(root + userInput);
+    let request = await fetch(root)
     let result = await request.json();
 
     return result;
@@ -213,25 +217,36 @@ let fetchBySearch = async function (userInput) {
 
 
 
-let createList = async function (userInput) {
+let createList = async function (userInput, advancedSr) {
+    if(advancedSr == undefined) {
+        advancedSr = "";
+    }
+    let fetchResult = await fetchBySearch(userInput, advancedSr);
 
-    let fetchResult = await fetchBySearch(userInput);
-
-    let searchMain = document.querySelector(".search-main");
+    let searchMain = document.querySelector(".form-1-container");
     let ul = document.createElement("ul");
     searchMain.appendChild(ul);
     ul.classList.add("ul-form");
 
-    ///creates 3 li elements
-    for (let i = 0; i < fetchResult.length; i++) {
-        let li = document.createElement("li");
-        ul.appendChild(li);
-        list = document.querySelectorAll(".ul-form li");
-        list[i].classList.add("li-form");
 
-        list[i].innerHTML = fetchResult[i].name;
-        
+    if(userInput.length > 0) {
+        document.querySelector(".form-2-container").classList.remove("hidden")
+        for (let i = 0; i < fetchResult.length; i++) {
+            let li = document.createElement("li");
+            ul.appendChild(li)
+
+            list = document.querySelectorAll(".ul-form li");
+            list[i].classList.add("li-form");
+    
+            list[i].innerHTML = fetchResult[i].name;
+            
+        }
     }
+
+    if (userInput.length == 0) {
+        document.querySelector(".form-2-container").classList.add("hidden")
+    }
+
       
     //makes the list clickable
      for (let i = 0; i < list.length; i++) {
@@ -242,6 +257,8 @@ let createList = async function (userInput) {
      }
 }
 
+
+
 let hideList = function() {
     if(searchInput.value.length == 0) {
         
@@ -249,15 +266,15 @@ let hideList = function() {
             list[i].remove();
         }
     }
-     else{
-         for(let i = 0; i < list.length; i++) {
-             list[i].style.display = "";
-         }
-     }
+    //  else{
+    //      for(let i = 0; i < list.length; i++) {
+    //          list[i].style.display = "";
+    //      }
+    //  }
 }
 
 searchInput.addEventListener("keyup", function () {
-    createList(searchInput.value);
+    createList(searchInput.value, oneFunction());
     hideList();
 })
       
@@ -265,23 +282,33 @@ searchInput.addEventListener("keyup", function () {
 /* --------------------------------- advanced search ---------------------------- */
 
 
-// let advancedSearch = async function(desiredFilter) {
-//   let root =  "https://api.punkapi.com/v2/beers?";
 
-//   let request = await fetch(root + desiredFilter);
-//   let result = await request.json();
-//   return result;
- 
-//  }
-
-//  let malt = document.querySelector(".malt");
-//  let searchB
-
-//  malt.addEventListener("click", function() {
-//     console.log(advancedSearch("malt=Caramalt|Amber"))
-//  })
+let filterButton = document.querySelector(".filter-button");
+let clicked = false;
 
 
+
+ filterButton.addEventListener("click", function() {
+    const filters = document.querySelectorAll(".filter-wrapper div");
+    const applyButton = document.querySelector(".filter-wrapper button");
+
+
+    if(clicked == false) {
+        applyButton.classList.remove("inactive");
+        for(let i = 0; i < filters.length; i++) {
+            filters[i].classList.remove("inactive");
+           clicked = true;
+        }
+    }
+    else {
+        applyButton.classList.add("inactive");
+        for(let i = 0; i < filters.length; i++) {
+            filters[i].classList.add("inactive");
+           clicked = false;
+        }
+    }
+   
+})
 
 
   
@@ -297,57 +324,59 @@ let AbvLtInput = ""
 let urlToFetch = ""
 
 
-// function oneFunction(){
+function oneFunction(){
 
-//     if (document.getElementById('hops').value === "") {
-//         hopsInput = ""
-//     }else{
-//         hopsInput = "?hops=" + document.getElementById('hops').value + "&"
-//     }
+    if (document.getElementById('hops').value === "") {
+        hopsInput = ""
+    }else{
+        hopsInput = "hops=" + document.getElementById('hops').value + "&"
+    }
 
     
-//     if (document.getElementById('malt').value === "") {
-//         maltInput = ""
-//     }else{
-//         maltInput = "?malt=" + document.getElementById('malt').value + "&"
-//     }
+    if (document.getElementById('malt').value === "") {
+        maltInput = ""
+    }else{
+        maltInput = "malt=" + document.getElementById('malt').value + "&"
+    }
     
-//     if (document.getElementById('bbt').value === "") {
-//         brewedBtInput = ""
-//     }else{
-//         brewedBtInput = "?brewed_before=" + document.getElementById('bbt').value + "&"
-//     }
+    if (document.getElementById('bbt').value === "") {
+        brewedBtInput = ""
+    }else{
+        brewedBtInput = "brewed_before=" + document.getElementById('bbt').value + "&"
+    }
         
-//     if (document.getElementById('bat').value === "") {
-//         brewedAtInput = ""
-//     }else{
-//         brewedAtInput = "?brewed_after=" + document.getElementById('bat').value + "&"
-//     }
+    if (document.getElementById('bat').value === "") {
+        brewedAtInput = ""
+    }else{
+        brewedAtInput = "brewed_after=" + document.getElementById('bat').value + "&"
+    }
     
-//     if (document.getElementById('abvGt').value === "") {
-//         AbvGtInput = ""
-//     }else{
-//         AbvGtInput = "?abv_gt=" + document.getElementById('abvGt').value + "&"
-//     }
+    if (document.getElementById('abvGt').value === "") {
+        AbvGtInput = ""
+    }else{
+        AbvGtInput = "abv_gt=" + document.getElementById('abvGt').value + "&"
+    }
     
-//     if (document.getElementById('abvLt').value === "") {
-//         AbvLtInput = ""
-//     }else{
-//         AbvLtInput = "?abv_lt=" + document.getElementById('abvLt').value + "&"
-//     }
+    if (document.getElementById('abvLt').value === "") {
+        AbvLtInput = ""
+    }else{
+        AbvLtInput = "abv_lt=" + document.getElementById('abvLt').value + "&"
+    }
 
-//     urlToFetch = hopsInput + maltInput + brewedBtInput + brewedAtInput + AbvGtInput + AbvLtInput
+    urlToFetch = hopsInput + maltInput + brewedBtInput + brewedAtInput + AbvGtInput + AbvLtInput
+    console.log(urlToFetch)
+    return urlToFetch
         
-//     // console.log(hopsInput) 
-//     // console.log(maltInput) 
-//     // console.log(brewedBtInput) 
-//     // console.log(brewedAtInput) 
-//     // console.log(AbvGtInput) 
-//     // console.log(AbvLtInput) 
-//     // console.log(urlToFetch) 
-//     advancedSearch(hopsInput, maltInput, brewedBtInput, brewedAtInput, AbvGtInput, AbvLtInput)
+    // console.log(hopsInput) 
+    // console.log(maltInput) 
+    // console.log(brewedBtInput) 
+    // console.log(brewedAtInput) 
+    // console.log(AbvGtInput) 
+    // console.log(AbvLtInput) 
+    // console.log(urlToFetch) 
+    // advancedSearch(hopsInput, maltInput, brewedBtInput, brewedAtInput, AbvGtInput, AbvLtInput)
     
-// }
+}
 
 
 
@@ -356,8 +385,8 @@ let urlToFetch = ""
 
 
 async function advancedSearch(hops, malt, brewedBeforeThan, brewedAfterThan, abvGreater, abvLesser){
-    const request = await fetch (`https://api.punkapi.com/v2/beers${hops}${malt}${brewedBeforeThan}${brewedAfterThan}${abvGreater}${abvLesser}`)
-    
+    const request = await fetch (`https://api.punkapi.com/v2/beers?${hops}${malt}${brewedBeforeThan}${brewedAfterThan}${abvGreater}${abvLesser}`)
+    console.log(request)
     const answer = await request.json()
     console.log(answer)
 }

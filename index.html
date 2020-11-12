@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,11 @@
     <!-- Här är en annan font som vi skulle kunna använda till rubriker ==> font-family: 'Rouge Script', cursive; -->
     <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/418b840756.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header>
         <div class="logo-wrapper">
@@ -31,7 +35,8 @@
                 <div class="home-beer-card">
                     <div class="home-beer-card-pic">
                         <!-- <p class="no-picture"></p> -->
-                        <p class="info-no-picture hidden">We don't have any picture of this beer but here is a baby Yoda</p>
+                        <p class="info-no-picture hidden">We don't have any picture of this beer but here is a baby Yoda
+                        </p>
                         <img class="beer-card-img" src="" alt="No image available,sorry!">
                     </div>
                     <div class="home-beer-card-name">
@@ -53,56 +58,74 @@
     </section>
     <section class="search hidden">
         <div class="search-wrapper">
-            
-            
-            
-            <div class="search-main-wrapper">
-                <div class="search-header">
-                    <img src="35123-52815.png">
+            <div class="search-wrapper-content">
+
+                <div class="search-wrapper-content-image">
+                    <div class="search-image">
+                        <img class="search-image" src="35123-52815.png">
+                        <h2>What are you looking for?</h2>
+                    </div>
                 </div>
-                <main class="search-main">
-                    <h2>What are you looking for?</h2>
+
+                <div class="search-wrapper-content-search-box">
+                    <div class="advanced-search-container">
+                        <div class="filter-button">
+                            <i class="fas fa-list-ul"></i>
+                            <p>Advanced search</p>
+                        </div> 
+                    </div>
                     <form>
-                        <input class="regular-search" type="text" placeholder="Search...">
-                        <i class="fas fa-search"></i>
+
+                        <div class="form-1-container">
+                            <input class="regular-search" type="text" placeholder="Search...">
+                            <i class="fas fa-search"></i>
+                        </div>
+
+                        <div class="form-2-container hidden">
+                            <p>page counter ska vara här</p>
+                        </div>
+                       
                     </form>
-                    
-                </main>
-                
+                </div>
+
+
+                <div class="filter-wrapper">
+                    <div class="inactive">
+                        <p>hops</p>
+                        <input placeholder="Ex. Columbus" type="text" id="hops">
+                    </div>
+                    <div class="inactive">
+                        <p>Malt</p>
+                        <input placeholder="Ex. Amber" type="text" id="malt">
+                    </div>
+                    <div class="inactive">
+                        <p>Brewed before than</p>
+                        <input placeholder="mm-yyyy" type="text" id="bbt">
+                    </div>
+                    <div class="inactive">
+                        <p>Brewed after than</p>
+                        <input placeholder="mm-yyyy" type="text" id="bat">
+                    </div>
+                    <div class="inactive">
+                        <p>ABV greater than</p>
+                        <input placeholder="Ex. 5" type="text" id="abvGt">
+                    </div>
+                    <div class="inactive">
+                        <p>ABV lesser than</p>
+                        <input placeholder="Ex. 10" type="text" id="abvLt">
+                    </div>
+
+                    <button class="inactive" onclick="oneFunction()" id="apply-button">Apply filters</button>
+
+                </div>
+
             </div>
-            
-            
-            
-            <!-- <div class="filter-wrapper">
-                <label for="hops">Hops: </label>
-                <input placeholder="Enter a hop" type="text" id="hops">
-                
-                <label for="malt">Malt: </label>
-                <input placeholder="Enter a malt" type="text" id="malt">
-               
-                <label for="bbt">Brewed before than: </label>
-                <input placeholder="Enter a date before" type="text" id="bbt">
-                
-                <label for="bat">Brewed after than: </label>
-                <input placeholder="Enter a date after" type="text" id="bat">
-                
-                <label for="abvGt">ABV greater than: </label>
-                <input placeholder="Enter an ABV greater" type="text" id="abvGt">
-                
-                <label for="abvLt">ABV lesser than: </label>
-                <input placeholder="Enter an ABV lesser" type="text" id="abvLt">
-
-                <button onclick="oneFunction()">dame click</button>
-
-            </div> -->
         </div>
     </section>
     <section class="info hidden">
         <div class="info-content-wrapper">
             <div class="info-content">
                 <div class="info-beer-card">
-                    <!-- <p>aaaaaaaaaaaaa</p>
-                    <p>eso tilino</p> -->
                     <p class="info-no-picture hidden">We don't have any picture of this beer but here is a baby Yoda</p>
                     <img class="info-beer-card-img" src="" alt="">
                 </div>
@@ -113,4 +136,5 @@
     </section>
     <script src="main.js"></script>
 </body>
+
 </html>

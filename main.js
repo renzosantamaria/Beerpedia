@@ -11,7 +11,7 @@ function hideAllSections() {
 // console.log(response)
 
 
-let btn = document.querySelectorAll(".btn-wrapper button")//TAR KNAPPARNA HOME, SEARCH OCH INFO
+let btn = document.querySelectorAll(".header-btn p")//TAR KNAPPARNA HOME, SEARCH 
 let currentClass;
 for (let i = 0; i < btn.length; i++) {
     btn[i].addEventListener("click", function () { // GER KNAPPARNA EN EVENT LISTENER
@@ -282,11 +282,28 @@ searchInput.addEventListener("keyup", function () {
 /* --------------------------------- advanced search ---------------------------- */
 
 
+// let advancedSearch = async function(desiredFilter) {
+//   let root =  "https://api.punkapi.com/v2/beers?";
+
+//   let request = await fetch(root + desiredFilter);
+//   let result = await request.json();
+//   return result;
+ 
+//  }
+
+//  let malt = document.querySelector(".malt");
+//  let searchB
+
+//  malt.addEventListener("click", function() {
+//     console.log(advancedSearch("malt=Caramalt|Amber"))
+//  })
+
+
+
+//HIDE/SHOW FILTERS
 
 let filterButton = document.querySelector(".filter-button");
 let clicked = false;
-
-
 
  filterButton.addEventListener("click", function() {
     const filters = document.querySelectorAll(".filter-wrapper div");

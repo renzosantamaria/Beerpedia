@@ -30,8 +30,6 @@
                 <p>Search</p>
             </div>
         </div>
-
-
     </header>
 
     <section class="home">
@@ -40,9 +38,7 @@
 
                 <div class="home-beer-card">
                     <div class="home-beer-card-pic">
-                        <!-- <p class="no-picture"></p> -->
-                        <p class="info-no-picture hidden">We don't have any picture of this beer but here is a baby Yoda
-                        </p>
+                        <p class="info-no-picture hidden">We don't have any picture of this beer but here is a baby Yoda</p>
                         <img class="beer-card-img" src="" alt="No image available,sorry!">
                     </div>
                     <div class="home-beer-card-name">
@@ -131,7 +127,15 @@
                         </div>
 
                         <div class="form-2-container hidden">
-                            <p>page counter ska vara här</p>
+                            <div class="previous-next">
+
+                            <button type="button" onclick="previousPage()" >◁</button>
+
+                            <p><span class="current-page">1</span>/?</p>
+
+                            <button type="button" onclick="nextPage()" >▷</button>
+                            </div>
+                            
                         </div>
                        
                     </form>

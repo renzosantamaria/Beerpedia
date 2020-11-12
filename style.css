@@ -200,7 +200,7 @@ a:hover{
 
 .search-wrapper-content{
     display: grid;
-    padding: 0 20px;
+    padding: 30px 20px 60px 20px;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
 }
@@ -214,7 +214,10 @@ a:hover{
     text-align: center;
     background-color: rgba(0, 0, 0, 0.803);
     color: #048980;
-    width: 500px; 
+    width: 500px;
+    height: 40px;
+    line-height: 40px;
+    
 }
 
 .search-wrapper-content-image,
@@ -332,7 +335,7 @@ ul {
     height:40px;
     background-color: rgba(0, 0, 0, 0.803);
     color: #048980;
-    /* margin-right:2.2vh; */
+    line-height: 40px;
 }
 
 
@@ -420,6 +423,17 @@ ul {
 
 .filter-wrapper button:hover {
     cursor:pointer;
+}
+
+.previous-next{
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.803);
+}
+
+.previous-next p{
+    width: 40px;
+   
 }
 
 
@@ -527,10 +541,20 @@ ul {
 
     .form-2-container p {
         width: 300px;
+        background-color: rgba(0, 0, 0, 0.803);
     }
 
     .header-btn{
         font-size: 14px;
     }
+
+    .filter-wrapper {
+        font-size: 14px;
+    }
+
+    .filter-wrapper input {
+        width: 140px;
+    }
+
 
 }

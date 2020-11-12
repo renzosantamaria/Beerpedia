@@ -196,17 +196,17 @@ document.querySelector(".see-more").addEventListener("click", seeMore)
 
 
 //global variables
-var searchButton = document.querySelector(".fa-search");
-var searchInput = document.querySelector(".regular-search");
-var list;
+let pageCounter = 1;
+let searchButton = document.querySelector(".fa-search");
+let searchInput = document.querySelector(".regular-search");
+let list;
 
 
-let fetchBySearch = async function (userInput, advancedSr) {
+let fetchBySearch = async function (userInput, advancedSr, page) {
     if(advancedSr == undefined) {
         advancedSr = "";
     }
-    let root = "https://api.punkapi.com/v2/beers?beer_name=" + userInput + "&" + advancedSr + "&per_page=4";
-    console.log(root)
+    let root = "https://api.punkapi.com/v2/beers?beer_name=" + userInput + "&" + advancedSr;
 
     let request = await fetch(root)
     let result = await request.json();
@@ -221,7 +221,7 @@ let createList = async function (userInput, advancedSr) {
     if(advancedSr == undefined) {
         advancedSr = "";
     }
-    let fetchResult = await fetchBySearch(userInput, advancedSr);
+    let fetchResult = await fetchBySearch(userInput, advancedSr, pageCounter);
 
     let searchMain = document.querySelector(".form-1-container");
     let ul = document.createElement("ul");
@@ -282,25 +282,6 @@ searchInput.addEventListener("keyup", function () {
 /* --------------------------------- advanced search ---------------------------- */
 
 
-// let advancedSearch = async function(desiredFilter) {
-//   let root =  "https://api.punkapi.com/v2/beers?";
-
-//   let request = await fetch(root + desiredFilter);
-//   let result = await request.json();
-//   return result;
- 
-//  }
-
-//  let malt = document.querySelector(".malt");
-//  let searchB
-
-//  malt.addEventListener("click", function() {
-//     console.log(advancedSearch("malt=Caramalt|Amber"))
-//  })
-
-
-
-//HIDE/SHOW FILTERS
 
 let filterButton = document.querySelector(".filter-button");
 let clicked = false;
@@ -395,14 +376,8 @@ function oneFunction(){
     
 }
 
-
-
-
-// FUNKTIONERNA TILL AVANCERAD SÖKNING--------------
-
-
-async function advancedSearch(hops, malt, brewedBeforeThan, brewedAfterThan, abvGreater, abvLesser){
-    const request = await fetch (`https://api.punkapi.com/v2/beers?${hops}${malt}${brewedBeforeThan}${brewedAfterThan}${abvGreater}${abvLesser}`)
+async function advancedSearch(hops, malt, brewedBeforeThan, brewedAfterThan, abvGreater, abvLesser, page){
+    const request = await fetch (`https://api.punkapi.com/v2/beers?${hops}${malt}${brewedBeforeThan}${brewedAfterThan}${abvGreater}${abvLesser}+"&page="${page}`)
     console.log(request)
     const answer = await request.json()
     console.log(answer)
@@ -410,6 +385,50 @@ async function advancedSearch(hops, malt, brewedBeforeThan, brewedAfterThan, abv
 
 // https://api.punkapi.com/v2/beers?brewed_before=11-2012&abv_gt=6
 
+//-------------------------------------------PREVIOUS OCH NEXT BUTTONS--------------------------------------
 
+function nextPage() {
+    if (pageCounter != "undefined") {
+        pageCounter++
+    }else{  //När man kommer till sista sidan kommer den att returnera dig till första
+        pageCounter = 1 
+    }
+    console.log(pageCounter)
+
+    // getStarWarsData(pageCounter)
+    // print()
+    document.querySelector(".current-page").innerHTML = pageCounter
+ }
+ 
+ function previousPage() {
+     if (pageCounter != "undefined") {
+         pageCounter--
+     }else{  //När man kommer till sista sidan kommer den att returnera dig till första
+         pageCounter = 1 
+     }
+     console.log(pageCounter)
+ 
+     // getStarWarsData(pageCounter)
+     // print()
+     document.querySelector(".current-page").innerHTML = pageCounter
+  }
+ 
+
+
+
+
+
+
+
+//  function previousPage() {
+//     if (pageNum > 1) {
+//         pageNum-- 
+//     }else{// När man inte kan backa mer kommer den att skicka dig till sista sidan
+//         pageNum = 9
+//     }
+//     getStarWarsData(pageNum)
+//     print()
+//     document.querySelector("p .current-page").innerHTML = pageNum
+// }
 
 

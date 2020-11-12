@@ -53,6 +53,7 @@ async function randomBeer() {
 
 function fillTheInfo(source) {
     if (source[0].image_url != null) {
+
         document.querySelector(".beer-card-img").src = source[0].image_url
         document.querySelector(".info-beer-card-img").src = source[0].image_url
         document.querySelector(".info-beer-card-img").style = "max-height: 400px"
@@ -61,9 +62,12 @@ function fillTheInfo(source) {
         console.log("we got a null!");
 
         //Landing page beer card
+        
+        // document.querySelector(".info-no-picture").classList.remove("hidden")
         document.querySelector(".beer-card-img").src = "images/baby-yoda.jpeg"
         document.querySelector(".beer-card-img").style = "max-width: 300px"
         //Info page beer card
+        
         document.querySelector(".info-beer-card-img").src = "images/baby-yoda.jpeg"
         document.querySelector(".info-beer-card-img").style = "max-height: 400px; max-width: 300px"
     }
@@ -101,7 +105,8 @@ async function print(desiredFetch) {
     // fillTheInfo(randomBeerFetch)
 
     if (randomBeerFetch[0].image_url != null) {
-        // document.querySelector(".beer-card-img").src = randomBeerFetch[0].image_url
+        
+        // document.querySelector(".info-no-picture").classList.add("hidden")
         document.querySelector(".info-beer-card-img").src = randomBeerFetch[0].image_url
         document.querySelector(".info-beer-card-img").style = "max-height: 400px"
     }
@@ -109,9 +114,8 @@ async function print(desiredFetch) {
         console.log("we got a null!");
 
         //Landing page beer card
-        // document.querySelector(".beer-card-img").src = "images/baby-yoda.jpeg"
-        // document.querySelector(".beer-card-img").style = "max-width: 300px"
-        //Info page beer card
+        
+        // document.querySelector(".info-no-picture").classList.remove("hidden")
         document.querySelector(".info-beer-card-img").src = "images/baby-yoda.jpeg"
         document.querySelector(".info-beer-card-img").style = "max-height: 400px; max-width: 300px"
     }
@@ -193,7 +197,7 @@ document.querySelector(".see-more").addEventListener("click", seeMore)
 
 //global variables
 var searchButton = document.querySelector(".fa-search");
-var searchInput = document.querySelector("input");
+var searchInput = document.querySelector(".regular-search");
 var list;
 
 
@@ -230,13 +234,12 @@ let createList = async function (userInput) {
     }
       
     //makes the list clickable
-    for (let i = 0; i < list.length; i++) {
-        // console.log("hello")
-        list[i].addEventListener("click", function () {
-            print(fetchBySearch(list[i].innerHTML));
-            seeMore();
-        })
-    }
+     for (let i = 0; i < list.length; i++) {
+         list[i].addEventListener("click", function () {
+             print(fetchBySearch(list[i].innerHTML));
+             seeMore();
+         })
+     }
 }
 
 let hideList = function() {
@@ -246,11 +249,11 @@ let hideList = function() {
             list[i].remove();
         }
     }
-    // else{
-    //     for(let i = 0; i < list.length; i++) {
-    //         list[i].style.display = "";
-    //     }
-    // }
+     else{
+         for(let i = 0; i < list.length; i++) {
+             list[i].style.display = "";
+         }
+     }
 }
 
 searchInput.addEventListener("keyup", function () {
@@ -259,9 +262,107 @@ searchInput.addEventListener("keyup", function () {
 })
       
         
+/* --------------------------------- advanced search ---------------------------- */
+
+
+// let advancedSearch = async function(desiredFilter) {
+//   let root =  "https://api.punkapi.com/v2/beers?";
+
+//   let request = await fetch(root + desiredFilter);
+//   let result = await request.json();
+//   return result;
+ 
+//  }
+
+//  let malt = document.querySelector(".malt");
+//  let searchB
+
+//  malt.addEventListener("click", function() {
+//     console.log(advancedSearch("malt=Caramalt|Amber"))
+//  })
 
 
 
+
+  
+//VARIABLER AVANCERAD SÖKNING-------------------    
+
+let hopsInput = ""
+let maltInput = ""
+let brewedBtInput = ""
+let brewedAtInput = ""
+let AbvGtInput = ""
+let AbvLtInput = ""
+
+let urlToFetch = ""
+
+
+function oneFunction(){
+
+    if (document.getElementById('hops').value === "") {
+        hopsInput = ""
+    }else{
+        hopsInput = "?hops=" + document.getElementById('hops').value + "&"
+    }
+
+    
+    if (document.getElementById('malt').value === "") {
+        maltInput = ""
+    }else{
+        maltInput = "?malt=" + document.getElementById('malt').value + "&"
+    }
+    
+    if (document.getElementById('bbt').value === "") {
+        brewedBtInput = ""
+    }else{
+        brewedBtInput = "?brewed_before=" + document.getElementById('bbt').value + "&"
+    }
+        
+    if (document.getElementById('bat').value === "") {
+        brewedAtInput = ""
+    }else{
+        brewedAtInput = "?brewed_after=" + document.getElementById('bat').value + "&"
+    }
+    
+    if (document.getElementById('abvGt').value === "") {
+        AbvGtInput = ""
+    }else{
+        AbvGtInput = "?abv_gt=" + document.getElementById('abvGt').value + "&"
+    }
+    
+    if (document.getElementById('abvLt').value === "") {
+        AbvLtInput = ""
+    }else{
+        AbvLtInput = "?abv_lt=" + document.getElementById('abvLt').value + "&"
+    }
+
+    urlToFetch = hopsInput + maltInput + brewedBtInput + brewedAtInput + AbvGtInput + AbvLtInput
+        
+    // console.log(hopsInput) 
+    // console.log(maltInput) 
+    // console.log(brewedBtInput) 
+    // console.log(brewedAtInput) 
+    // console.log(AbvGtInput) 
+    // console.log(AbvLtInput) 
+    // console.log(urlToFetch) 
+    advancedSearch(hopsInput, maltInput, brewedBtInput, brewedAtInput, AbvGtInput, AbvLtInput)
+    
+}
+
+
+
+
+// FUNKTIONERNA TILL AVANCERAD SÖKNING--------------
+
+
+async function advancedSearch(hops, malt, brewedBeforeThan, brewedAfterThan, abvGreater, abvLesser){
+    const request = await fetch (`https://api.punkapi.com/v2/beers${hops}${malt}${brewedBeforeThan}${brewedAfterThan}${abvGreater}${abvLesser}`)
+    
+    const answer = await request.json()
+    console.log(answer)
+}
+
+// https://api.punkapi.com/v2/beers?brewed_before=11-2012&abv_gt=6
 
 
 

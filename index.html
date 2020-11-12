@@ -30,6 +30,8 @@
 
                 <div class="home-beer-card">
                     <div class="home-beer-card-pic">
+                        <!-- <p class="no-picture"></p> -->
+                        <p class="info-no-picture hidden">We don't have any picture of this beer but here is a baby Yoda</p>
                         <img class="beer-card-img" src="" alt="No image available,sorry!">
                     </div>
                     <div class="home-beer-card-name">
@@ -50,26 +52,58 @@
 
     </section>
     <section class="search hidden">
-        <div class="search-content-wrapper">
-            <div class="search-header">
-                <img src="35123-52815.png">
+        <div class="search-wrapper">
+            
+            
+            
+            <div class="search-main-wrapper">
+                <div class="search-header">
+                    <img src="35123-52815.png">
+                </div>
+                <main class="search-main">
+                    <h2>What are you looking for?</h2>
+                    <form>
+                        <input class="regular-search" type="text" placeholder="Search...">
+                        <i class="fas fa-search"></i>
+                    </form>
+                    
+                </main>
+                
             </div>
-            <main class="search-main">
-                <h2>Vad letar du efter?</h2>
-                <form>
-                    <input type="text" placeholder="Search..."> 
-                    <i class="fas fa-search"></i>
-                </form>
-                <!-- <nav class="nav-search">
+            
+            
+            
+            <div class="filter-wrapper">
+                <label for="hops">Hops: </label>
+                <input placeholder="Enter a hop" type="text" id="hops">
+                
+                <label for="malt">Malt: </label>
+                <input placeholder="Enter a malt" type="text" id="malt">
+               
+                <label for="bbt">Brewed before than: </label>
+                <input placeholder="Enter a date before" type="text" id="bbt">
+                
+                <label for="bat">Brewed after than: </label>
+                <input placeholder="Enter a date after" type="text" id="bat">
+                
+                <label for="abvGt">ABV greater than: </label>
+                <input placeholder="Enter an ABV greater" type="text" id="abvGt">
+                
+                <label for="abvLt">ABV lesser than: </label>
+                <input placeholder="Enter an ABV lesser" type="text" id="abvLt">
 
-                </nav> -->
-            </main>
+                <button onclick="oneFunction()">dame click</button>
+
+            </div>
         </div>
     </section>
     <section class="info hidden">
         <div class="info-content-wrapper">
             <div class="info-content">
                 <div class="info-beer-card">
+                    <!-- <p>aaaaaaaaaaaaa</p>
+                    <p>eso tilino</p> -->
+                    <p class="info-no-picture hidden">We don't have any picture of this beer but here is a baby Yoda</p>
                     <img class="info-beer-card-img" src="" alt="">
                 </div>
             </div>

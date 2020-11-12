@@ -84,6 +84,7 @@ a:hover{
 
 .home-beer-card-pic{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -122,6 +123,7 @@ a:hover{
     align-items: center;
 }
 
+    
 
 .home-random-beer-button button{
     padding: 10px;
@@ -135,7 +137,6 @@ a:hover{
 .home-random-beer-button button:hover{
     cursor: pointer;
 }
-
 
 .see-more{
     font-style: italic;
@@ -164,6 +165,13 @@ a:hover{
     padding: 0 80px;
 }
 
+.info-no-picture,
+.no-picture{
+    width: 300px;
+    padding: 10px 10px;
+    text-align: center;
+}
+
 .info-beer-information{
     max-width: 500px;
 }
@@ -176,11 +184,19 @@ a:hover{
 
 /* ------------------------------------------------------- SECTION SEARCH PAGE --------------------------------------------------*/
 
-.search-content-wrapper{
+.search-wrapper {
+ display:grid;
+ grid-template-columns:auto auto;
+}
+
+
+.search-main-wrapper{
+    grid-column:2;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
+    margin-left:-300px;
 }
 
 .search-header {
@@ -195,7 +211,6 @@ a:hover{
 
 .search-main {
     height:400px;
- 
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -247,6 +262,26 @@ ul {
 .li-form:hover {
     background-color:#c3c9c7;
     cursor:pointer;
+}
+
+
+.filter-wrapper {
+    width:100px;
+    height:1000px;
+    grid-column:1;
+    margin-left: 20px;
+}
+
+.filters {
+    margin:10px 15px;
+    width:100px;
+    height: 30px;
+    background-color:grey;
+    margin-top:40px;
+}
+
+.malt {
+    
 }
 
 
@@ -340,6 +375,5 @@ ul {
         align-items: center;
         font-size: 13px;
     }
-
 
 }

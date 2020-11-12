@@ -79,7 +79,50 @@
                             <i class="fas fa-list-ul"></i>
                             <p>Advanced search</p>
                         </div> 
+                        
                     </div>
+
+                    <div class="filter-wrapper">
+                        <div class="first-row inactive">
+                            <div class="first-row-content">
+                                <p>Hops</p>
+                                <input placeholder="Ex. Columbus" type="text" id="hops">
+                            </div>
+                            <div class="inactive">
+                                <p>Malt</p>
+                                <input placeholder="Ex. Amber" type="text" id="malt">
+                            </div>
+                        </div>
+
+                        <div class="second-row inactive">
+                            <div class="second-row-content">
+                                <p>Brewed before than</p>
+                                <input placeholder="mm-yyyy" type="text" id="bbt">
+                            </div>
+                            <div class="inactive">
+                                <p>Brewed after than</p>
+                                <input placeholder="mm-yyyy" type="text" id="bat">
+                            </div>
+                        </div>
+                        
+                        <div class="third-row inactive">
+                            <div class="third-row-content">
+                                <p>ABV greater than</p>
+                                <input placeholder="Ex. 5" type="text" id="abvGt">
+                            </div>
+                            <div class="inactive">
+                                <p>ABV lesser than</p>
+                                <input placeholder="Ex. 10" type="text" id="abvLt">
+                            </div>
+                        </div>
+
+                        
+    
+                        <button class="inactive" onclick="oneFunction()" id="apply-button">Apply filters</button>
+    
+                    </div>
+
+
                     <form>
 
                         <div class="form-1-container">
@@ -95,35 +138,7 @@
                 </div>
 
 
-                <div class="filter-wrapper">
-                    <div class="inactive">
-                        <p>hops</p>
-                        <input placeholder="Ex. Columbus" type="text" id="hops">
-                    </div>
-                    <div class="inactive">
-                        <p>Malt</p>
-                        <input placeholder="Ex. Amber" type="text" id="malt">
-                    </div>
-                    <div class="inactive">
-                        <p>Brewed before than</p>
-                        <input placeholder="mm-yyyy" type="text" id="bbt">
-                    </div>
-                    <div class="inactive">
-                        <p>Brewed after than</p>
-                        <input placeholder="mm-yyyy" type="text" id="bat">
-                    </div>
-                    <div class="inactive">
-                        <p>ABV greater than</p>
-                        <input placeholder="Ex. 5" type="text" id="abvGt">
-                    </div>
-                    <div class="inactive">
-                        <p>ABV lesser than</p>
-                        <input placeholder="Ex. 10" type="text" id="abvLt">
-                    </div>
-
-                    <button class="inactive" onclick="oneFunction()" id="apply-button">Apply filters</button>
-
-                </div>
+               
 
             </div>
         </div>

@@ -248,6 +248,7 @@ a:hover{
 .advanced-search-container{
     display: flex;
     justify-content: flex-end;
+    /* margin-bottom: 12px; */
 }
 
 .regular-search{
@@ -255,6 +256,13 @@ a:hover{
     color: white;
     width: 500px;
     height: 30px;
+}
+
+.first-row,
+.second-row,
+.third-row{
+    display: flex;
+    justify-content: space-around;
 }
 /*
 .search-main-wrapper{
@@ -382,8 +390,7 @@ ul {
 
 
 .filter-wrapper div {
-    margin-top:30px;
-    
+    margin-top: 12px;
 }
 
 /* .filter-wrapper p {
@@ -525,6 +532,5 @@ ul {
     .header-btn{
         font-size: 14px;
     }
-
 
 }

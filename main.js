@@ -206,7 +206,7 @@ let fetchBySearch = async function (userInput, advancedSr, page) {
     if(advancedSr == undefined) {
         advancedSr = "";
     }
-    let root = "https://api.punkapi.com/v2/beers?beer_name=" + userInput + "&" + advancedSr;
+    let root = "https://api.punkapi.com/v2/beers?beer_name=" + userInput + "&" + advancedSr + "&per_page=10";
 
     let request = await fetch(root)
     let result = await request.json();

@@ -565,5 +565,15 @@ ul {
         width: 140px;
     }
 
+    .go-back{
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .img-go-back:hover{
+        cursor: pointer;
+    }
+
 
 }

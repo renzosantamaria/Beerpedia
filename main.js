@@ -21,6 +21,26 @@ for (let i = 0; i < btn.length; i++) {
         document.querySelector(currentClass).classList.remove("hidden")//TAR BORT HIDDEN FRÅN JUST DEN SEKTION MAN VÄLJER GENOM ATT KLICKA PÅ KNAPPEN
     })
 }
+//--------------------------------------------------------------------
+
+
+
+let btnGoBack = document.querySelector(".img-go-back")//TAR BILDEN GO BACK
+// let currentClass;
+
+
+btnGoBack.addEventListener("click", function () { // GER BILDEN EN EVENT LISTENER
+     
+        hideAllSections() // KALLAR PÅ FUNKTIONEN SOM LÄGGER TILL HIDDEN PÅ ALLA SEKTIONS
+        document.querySelector(".home").classList.remove("hidden")//TAR BORT HIDDEN FRÅN JUST DEN SEKTION MAN VÄLJER GENOM ATT KLICKA PÅ KNAPPEN
+    })
+
+
+
+
+
+//--------------------------------------------------------------------
+
 
 let dataRandomBeer = []
 // console.log(dataRandomBeer.name)

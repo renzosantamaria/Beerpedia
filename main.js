@@ -317,6 +317,20 @@ let createList = async function (userInput, advancedSr) {
 
     if(userInput.length > 2) {
         console.log("true");
+
+        //EN EVENT LISTENER SOM RENSAR LISTAN NÄR MAN CLICKAR PÅ SKÄRMEN
+        document.body.addEventListener('click', function(){
+            console.log("click!!!")
+            //tar bort alla elements
+            for(let i = 0; i < list.length; i++) {
+                list[i].remove();
+            }
+            document.querySelector(".form-2-container").classList.add("hidden") //tar bort page counter
+        }, true)
+            
+        
+
+
         pageContainer.classList.remove("hidden")
         for (let i = 0; i < fetchResult.length; i++) {
             let li = document.createElement("li");
@@ -328,6 +342,9 @@ let createList = async function (userInput, advancedSr) {
             list[i].innerHTML = fetchResult[i].name;
             
         }
+
+        //---------------------------------------------------här
+        
     }
 
     if(filterApplied == true) {
@@ -536,7 +553,7 @@ async function advancedSearch(hops, malt, brewedBeforeThan, brewedAfterThan, abv
     const nextButton = document.getElementById("next");
 
     nextButton.addEventListener("click", function() {
-        if(pageLimit == false && pageResultLength == 10) {  //------------------------här
+        if(pageLimit == false && pageResultLength == 10) { 
             console.log(pageResultLength)
             pageCounter++
             createList(searchInput.value, oneFunction(), pageCounter)
@@ -575,4 +592,7 @@ async function advancedSearch(hops, malt, brewedBeforeThan, brewedAfterThan, abv
       
     })
   
+
+
+
  

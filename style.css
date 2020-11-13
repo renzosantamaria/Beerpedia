@@ -216,12 +216,24 @@ a:hover{
 
 .form-2-container p{
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.803);
+    /* background-color: rgba(0, 0, 0, 0.8); */
     color: #048980;
     width: 500px;
     height: 40px;
     line-height: 40px;
     
+}
+
+.form-2-container button{
+    width: 30px;
+    background: bottom;
+    color: #048980;
+    border-radius: 4px;
+    
+}
+
+.form-2-container button:hover{
+    cursor: pointer;
 }
 
 .search-wrapper-content-image,
@@ -265,8 +277,14 @@ a:hover{
     background-color: rgba(0, 0, 0, 0.803);
     color: #048980;
     width: 500px;
-    height: 35px;
+    border-radius: 4px;
+    height: 50px;
+
 }
+
+.form-1-container input {
+    text-align: center;
+    }
 
 .first-row,
 .second-row,
@@ -327,6 +345,11 @@ a:hover{
 ::placeholder {
     color:#e7f3f2;
     opacity:0.3; 
+    
+}
+
+.filter-wrapper input{
+    padding-left: 10px;
 }
 
 .fa-search {
@@ -438,6 +461,9 @@ ul {
     display: flex;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.803);
+    padding: 6px 0;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
 }
 
 .previous-next p{
@@ -543,10 +569,6 @@ ul {
         width: 300px;
     }
 
-    .regular-search {
- 
-        width: 300px;
-    }
 
     .form-2-container{
         width: 300px;

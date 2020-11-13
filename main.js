@@ -270,6 +270,7 @@ let fetchByFilter = async function(userInput, advancedSr) {
 
 
 let pageLimit = false;
+let pageResultLength = 0
 const pageContainer = document.querySelector(".form-2-container")
 
 let createList = async function (userInput, advancedSr) {
@@ -283,6 +284,8 @@ let createList = async function (userInput, advancedSr) {
         console.log(pageCounter)
 
         fetchResult = await fetchByFilter(userInput, advancedSr);
+        pageResultLength = fetchResult.length
+        console.log(fetchResult.length)
         if(fetchResult.length == 0) {
             pageLimit = true;
         }
@@ -293,6 +296,8 @@ let createList = async function (userInput, advancedSr) {
     }
     else {
         fetchResult = await fetchBySearch(userInput, advancedSr);
+        pageResultLength = fetchResult.length
+        console.log(fetchResult.length)
         if(fetchResult.length == 0) {
             pageLimit = true;
         }
@@ -531,7 +536,8 @@ async function advancedSearch(hops, malt, brewedBeforeThan, brewedAfterThan, abv
     const nextButton = document.getElementById("next");
 
     nextButton.addEventListener("click", function() {
-        if(pageLimit == false) {
+        if(pageLimit == false && pageResultLength == 10) {  //------------------------här
+            console.log(pageResultLength)
             pageCounter++
             createList(searchInput.value, oneFunction(), pageCounter)
             document.querySelector(".current-page").innerHTML = pageCounter;
@@ -539,6 +545,11 @@ async function advancedSearch(hops, malt, brewedBeforeThan, brewedAfterThan, abv
                 list[i].remove();
             }
         }
+
+        if (pageResultLength != 10) {
+            pageCounter = pageCounter
+        }
+
         else {
             for(let i = 0; i < list.length; i++) {
                 list[i].remove();
@@ -565,23 +576,3 @@ async function advancedSearch(hops, malt, brewedBeforeThan, brewedAfterThan, abv
     })
   
  
- 
-
-
-
-
-
-
-
-//  function previousPage() {
-//     if (pageNum > 1) {
-//         pageNum-- 
-//     }else{// När man inte kan backa mer kommer den att skicka dig till sista sidan
-//         pageNum = 9
-//     }
-//     getStarWarsData(pageNum)
-//     print()
-//     document.querySelector("p .current-page").innerHTML = pageNum
-// }
-
-

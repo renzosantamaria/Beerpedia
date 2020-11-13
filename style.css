@@ -149,6 +149,7 @@ a:hover{
 .see-more{
     font-style: italic;
     font-size: 14px;
+    padding-bottom: 10px;
 }
 .see-more:hover{
     cursor: pointer;

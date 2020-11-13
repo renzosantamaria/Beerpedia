@@ -490,7 +490,8 @@ function oneFunction(){
         hopsInput = ""
     }else{
         filterApplied = true;
-        hopsInput = "hops=" + document.getElementById('hops').value + "&"
+        hopsInput = "hops=" + document.getElementById('hops').value.toLowerCase().replace(/\s/, '_') + "&"
+        console.log(hopsInput)
     }
 
     
@@ -498,7 +499,7 @@ function oneFunction(){
         maltInput = ""
     }else{
         filterApplied = true;
-        maltInput = "malt=" + document.getElementById('malt').value + "&"
+        maltInput = "malt=" + document.getElementById('malt').value.toLowerCase().replace(/\s/, '_') + "&"
     }
     
     if (document.getElementById('bbt').value === "") {

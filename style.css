@@ -200,7 +200,7 @@ a:hover{
 
 .search-wrapper-content{
     display: grid;
-    padding: 30px 20px 60px 20px;
+    padding: 30px 20px 200px 20px;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
 }
@@ -228,6 +228,8 @@ a:hover{
 }
 
 .filter-wrapper{
+    display:flex;
+    flex-direction:column;
     padding-bottom: 20px;
 }
 
@@ -243,8 +245,9 @@ a:hover{
 
 .search-image h2{
     text-align: center;
+    font-size:30px;
     margin-top: 40px;
-    font-family:'Raleway', sans-serif;
+    font-family:"Great Vibes";
     color:#048980;
 }
 
@@ -255,10 +258,10 @@ a:hover{
 }
 
 .regular-search{
-    background-color: black;
-    color: white;
+    background-color: rgba(0, 0, 0, 0.803);
+    color: #048980;
     width: 500px;
-    height: 30px;
+    height: 35px;
 }
 
 .first-row,
@@ -315,9 +318,11 @@ a:hover{
     
 }
 
+
+
 ::placeholder {
-    color:#9da39e;
-    opacity:0.5; 
+    color:#048980;
+    opacity:0.3; 
 }
 
 .fa-search {
@@ -526,7 +531,7 @@ ul {
         padding: 0 10px;
         display: flex;
         align-items: center;
-        font-size: 13px;
+        font-size: 11px;
     }
 
 
@@ -536,6 +541,10 @@ ul {
 
     .regular-search {
  
+        width: 300px;
+    }
+
+    .form-2-container{
         width: 300px;
     }
 

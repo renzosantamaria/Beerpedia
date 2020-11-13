@@ -59,7 +59,7 @@ function fillTheInfo(source) {
         document.querySelector(".info-beer-card-img").style = "max-height: 400px"
     }
     if (source[0].image_url === null) {
-        console.log("we got a null!");
+        // console.log("we got a null!");
 
         //Landing page beer card
         
@@ -202,36 +202,50 @@ let searchInput = document.querySelector(".regular-search");
 let list;
 
 
+let normalFetch = async function(userInput) {
+    let root = "https://api.punkapi.com/v2/beers?beer_name=" + userInput;
+    let request = await fetch(root)
+    let result = await request.json();
+
+    return result;
+}
+
+
 let fetchBySearch = async function (userInput, advancedSr, page) {
     if(advancedSr == undefined) {
         advancedSr = "";
     }
-    let root = "https://api.punkapi.com/v2/beers?beer_name=" + userInput + "&" + advancedSr + "per_page=10";
+    let root = "https://api.punkapi.com/v2/beers?beer_name=" + userInput + "&" + advancedSr + "per_page=10"  + "&page=" + pageCounter;
 
     let request = await fetch(root)
     let result = await request.json();
+    console.log(request);
 
 
     return result;
 
 }
 
-let fetchByFilter = async function(userInput, advancedSr, page) {
+let fetchByFilter = async function(userInput, advancedSr) {
     if(advancedSr == undefined) {
         advancedSr = "";
     }
     if(userInput == undefined) {
         advancedSr = "";
     }
-    let root = "https://api.punkapi.com/v2/beers?" + userInput + "&" + advancedSr + "&per_page=10";
+    let root = "https://api.punkapi.com/v2/beers?" + userInput + "&" + advancedSr + "per_page=10" + "&page=" + pageCounter;
 
     let request = await fetch(root)
+    console.log(request)
     let result = await request.json();
-    console.log(request);
+
+    
     return result;
 }
 
 
+let pageLimit = false;
+const pageContainer = document.querySelector(".form-2-container")
 
 let createList = async function (userInput, advancedSr) {
 
@@ -239,11 +253,27 @@ let createList = async function (userInput, advancedSr) {
     let fetchResult;
     
     if(userInput == 0 && filterApplied == true) {
-        console.log("works")
+        // console.log("works")
+        document.querySelector(".current-page").innerHTML = pageCounter
+        console.log(pageCounter)
+
         fetchResult = await fetchByFilter(userInput, advancedSr);
+        if(fetchResult.length == 0) {
+            pageLimit = true;
+        }
+        else{
+            pageLimit = false;
+        }
+    
     }
     else {
         fetchResult = await fetchBySearch(userInput, advancedSr);
+        if(fetchResult.length == 0) {
+            pageLimit = true;
+        }
+        else{
+            pageLimit = false;
+        }
     }
 
     
@@ -252,10 +282,12 @@ let createList = async function (userInput, advancedSr) {
     let ul = document.createElement("ul");
     searchMain.appendChild(ul);
     ul.classList.add("ul-form");
+    
 
 
-    if(userInput.length > 0) {
-        document.querySelector(".form-2-container").classList.remove("hidden")
+    if(userInput.length > 2) {
+        console.log("true");
+        pageContainer.classList.remove("hidden")
         for (let i = 0; i < fetchResult.length; i++) {
             let li = document.createElement("li");
             ul.appendChild(li)
@@ -269,7 +301,8 @@ let createList = async function (userInput, advancedSr) {
     }
 
     if(filterApplied == true) {
-        document.querySelector(".form-2-container").classList.remove("hidden")
+        console.log("also true")
+        pageContainer.classList.remove("hidden")
         for (let i = 0; i < fetchResult.length; i++) {
             let li = document.createElement("li");
             ul.appendChild(li)
@@ -282,21 +315,24 @@ let createList = async function (userInput, advancedSr) {
         }
     }
 
-
-
-
-    if (userInput.length == 0) {
+    if (searchInput.value.length == 0 && filterApplied == false) {
         document.querySelector(".form-2-container").classList.add("hidden")
     }
 
       
     //makes the list clickable
-     for (let i = 0; i < list.length; i++) {
-         list[i].addEventListener("click", function () {
-             print(fetchBySearch(list[i].innerHTML));
-             seeMore();
-         })
-     }
+    if(searchInput.value.length > 2 || filterApplied == true) {
+        for (let i = 0; i < list.length; i++) {
+            list[i].addEventListener("click", function () {
+                print(normalFetch(list[i].innerHTML));
+                seeMore();
+            })
+        }
+    }
+
+  
+    
+    
 }
 
 
@@ -316,8 +352,12 @@ let hideList = function() {
 }
 
 searchInput.addEventListener("keyup", function () {
+
     createList(searchInput.value, oneFunction());
     hideList();
+
+ 
+ 
 })
       
         
@@ -329,19 +369,25 @@ let filterButton = document.querySelector(".filter-button");
 let clicked = false;
 
  filterButton.addEventListener("click", function() {
+    
     const filters = document.querySelectorAll(".filter-wrapper div");
-    const applyButton = document.querySelector(".filter-wrapper button");
+    const applyButton = document.getElementById("apply-button");
+    const clearButton = document.getElementById("clear-button");
 
 
     if(clicked == false) {
+    
         applyButton.classList.remove("inactive");
+        clearButton.classList.remove("inactive");
         for(let i = 0; i < filters.length; i++) {
             filters[i].classList.remove("inactive");
            clicked = true;
         }
     }
     else {
+    
         applyButton.classList.add("inactive");
+        clearButton.classList.add("inactive");
         for(let i = 0; i < filters.length; i++) {
             filters[i].classList.add("inactive");
            clicked = false;
@@ -349,8 +395,26 @@ let clicked = false;
     }
 
     applyButton.addEventListener("click", function() {
+        
+        pageCounter = 1
+        console.log(pageCounter)
         oneFunction();
         createList(searchInput.value, oneFunction());
+    })
+
+    clearButton.addEventListener("click", function() {
+        // pageCounter = 1
+
+        let filterInputValues = document.querySelectorAll(".filter-wrapper input");
+        filterApplied = false;
+        document.querySelector(".form-2-container").classList.add("hidden")
+        
+        for(let i = 0; i < filterInputValues.length; i++) {
+            filterInputValues[i].value = null;
+        }
+
+        hideList();
+    
     })
    
 })
@@ -418,7 +482,7 @@ function oneFunction(){
     }
 
     urlToFetch = hopsInput + maltInput + brewedBtInput + brewedAtInput + AbvGtInput + AbvLtInput
-    console.log(urlToFetch)
+    // console.log(urlToFetch)
     return urlToFetch
         
  
@@ -435,31 +499,47 @@ async function advancedSearch(hops, malt, brewedBeforeThan, brewedAfterThan, abv
 
 //-------------------------------------------PREVIOUS OCH NEXT BUTTONS--------------------------------------
 
-function nextPage() {
-    if (pageCounter != "undefined") {
-        pageCounter++
-    }else{  //När man kommer till sista sidan kommer den att returnera dig till första
-        pageCounter = 1 
-    }
-    console.log(pageCounter)
 
-    // getStarWarsData(pageCounter)
-    // print()
-    document.querySelector(".current-page").innerHTML = pageCounter
- }
+
+
+
+    const nextButton = document.getElementById("next");
+
+    nextButton.addEventListener("click", function() {
+        if(pageLimit == false) {
+            pageCounter++
+            createList(searchInput.value, oneFunction(), pageCounter)
+            document.querySelector(".current-page").innerHTML = pageCounter;
+            for(let i = 0; i < list.length; i++) {
+                list[i].remove();
+            }
+        }
+        else {
+            for(let i = 0; i < list.length; i++) {
+                list[i].remove();
+            }
+        }
+       
+    })
+   
+
+    const previousButton = document.getElementById("previous");
+
+    previousButton.addEventListener("click", function() {
+        
+        if(pageCounter != 1) {
+            for(let i = 0; i < list.length; i++) {
+                list[i].remove();
+            }
+            hideList()
+            pageCounter--
+            createList(searchInput.value, oneFunction(), pageCounter);
+            document.querySelector(".current-page").innerHTML = pageCounter
+        }
+      
+    })
+  
  
- function previousPage() {
-     if (pageCounter != "undefined") {
-         pageCounter--
-     }else{  //När man kommer till sista sidan kommer den att returnera dig till första
-         pageCounter = 1 
-     }
-     console.log(pageCounter)
- 
-     // getStarWarsData(pageCounter)
-     // print()
-     document.querySelector(".current-page").innerHTML = pageCounter
-  }
  
 
 

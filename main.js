@@ -319,14 +319,15 @@ let createList = async function (userInput, advancedSr) {
         console.log("true");
 
         //EN EVENT LISTENER SOM RENSAR LISTAN NÄR MAN CLICKAR PÅ SKÄRMEN
-        document.body.addEventListener('click', function(){
-            console.log("click!!!")
-            //tar bort alla elements
-            for(let i = 0; i < list.length; i++) {
-                list[i].remove();
-            }
-            document.querySelector(".form-2-container").classList.add("hidden") //tar bort page counter
-        }, true)
+        // document.body.addEventListener('click', function(){
+        //     console.log("click!!!")
+        //     //tar bort alla elements
+        //     for(let i = 0; i < list.length; i++) {
+        //         list[i].remove();
+        //     }
+        //      //tar bort page counter
+        //     document.querySelector(".form-2-container").classList.add("hidden")
+        // }, true)
             
         
 

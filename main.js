@@ -23,11 +23,8 @@ for (let i = 0; i < btn.length; i++) {
 }
 //--------------------------------------------------------------------
 
-
-
+//EVENT LISTENER TILL GO BACK KNAPPEN
 let btnGoBack = document.querySelector(".img-go-back")//TAR BILDEN GO BACK
-// let currentClass;
-
 
 btnGoBack.addEventListener("click", function () { // GER BILDEN EN EVENT LISTENER
      
@@ -35,7 +32,15 @@ btnGoBack.addEventListener("click", function () { // GER BILDEN EN EVENT LISTENE
         document.querySelector(".home").classList.remove("hidden")//TAR BORT HIDDEN FRÅN JUST DEN SEKTION MAN VÄLJER GENOM ATT KLICKA PÅ KNAPPEN
     })
 
+//EVENT LISTENER TILL LOGOTYPEN
 
+let logo = document.querySelector(".logo")//TAR BILDEN GO BACK
+
+logo.addEventListener("click", function () { // GER BILDEN EN EVENT LISTENER
+     
+        hideAllSections() // KALLAR PÅ FUNKTIONEN SOM LÄGGER TILL HIDDEN PÅ ALLA SEKTIONS
+        document.querySelector(".home").classList.remove("hidden")//TAR BORT HIDDEN FRÅN JUST DEN SEKTION MAN VÄLJER GENOM ATT KLICKA PÅ KNAPPEN
+    })
 
 
 

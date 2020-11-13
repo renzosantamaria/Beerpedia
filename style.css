@@ -25,6 +25,10 @@ header{
     padding-top: 5px;
 }
 
+.logo:hover{
+    cursor: pointer;
+}
+
 .btn-wrapper{
     display: flex;
     align-items: center;

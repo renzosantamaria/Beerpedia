@@ -246,6 +246,28 @@ let fetchBySearch = async function (userInput, advancedSr, page) {
     let result = await request.json();
     console.log(request);
 
+    //Här lägger vi en event listener som rensar söklistan
+    const clearButton = document.getElementById("clear-button");
+    clearButton.addEventListener("click", function() {
+        // pageCounter = 1
+        console.log("clear button event listener");
+
+        let filterInputValues = document.querySelectorAll(".filter-wrapper input");
+        filterApplied = false;
+        document.querySelector(".form-2-container").classList.add("hidden")
+        //Här ska man finslippa--------------------------------------------------------------
+        for(let i = 0; i < list.length; i++) {
+               list[i].remove();
+                }
+
+        for(let i = 0; i < filterInputValues.length; i++) {
+            filterInputValues[i].value = null;
+        }
+        hideList();
+        pageCounter = 1
+    
+    })
+
 
     return result;
 
@@ -275,6 +297,7 @@ const pageContainer = document.querySelector(".form-2-container")
 
 let createList = async function (userInput, advancedSr) {
 
+    
 
     let fetchResult;
     
@@ -378,6 +401,8 @@ let createList = async function (userInput, advancedSr) {
         }
     }
 
+    
+
   
     
     
@@ -417,20 +442,21 @@ let filterButton = document.querySelector(".filter-button");
 let clicked = false;
 
  filterButton.addEventListener("click", function() {
-    
+    console.log("click advanced")
     const filters = document.querySelectorAll(".filter-wrapper div");
     const applyButton = document.getElementById("apply-button");
     const clearButton = document.getElementById("clear-button");
 
-    clearButton.addEventListener('click', function(){
-            console.log("click!!!")
-            //tar bort alla elements
-            for(let i = 0; i < list.length; i++) {
-                list[i].remove();
-            }
-            //tar bort page counter
-            document.querySelector(".form-2-container").classList.add("hidden")
-        }, true)
+    // clearButton.addEventListener('click', function(){
+    //         console.log("click!!!")
+    //         // pageCounter = 1
+    //         //tar bort alla elements
+    //         for(let i = 0; i < list.length; i++) {
+    //             list[i].remove();
+    //         }
+    //         //tar bort page counter
+    //         document.querySelector(".form-2-container").classList.add("hidden")
+    //     }, true)
 
 
     if(clicked == false) {
@@ -453,27 +479,32 @@ let clicked = false;
     }
 
     applyButton.addEventListener("click", function() {
-        
+        console.log("apply button event listener");
         pageCounter = 1
         console.log(pageCounter)
         oneFunction();
         createList(searchInput.value, oneFunction());
     })
 
-    clearButton.addEventListener("click", function() {
-        // pageCounter = 1
+    // clearButton.addEventListener("click", function() {
+    //     // pageCounter = 1
+    //     console.log("clear button event listener");
 
-        let filterInputValues = document.querySelectorAll(".filter-wrapper input");
-        filterApplied = false;
-        document.querySelector(".form-2-container").classList.add("hidden")
-        
-        for(let i = 0; i < filterInputValues.length; i++) {
-            filterInputValues[i].value = null;
-        }
+    //     let filterInputValues = document.querySelectorAll(".filter-wrapper input");
+    //     filterApplied = false;
+    //     document.querySelector(".form-2-container").classList.add("hidden")
+    //     //Här ska man finslippa--------------------------------------------------------------
+    //     for(let i = 0; i < list.length; i++) {
+    //            list[i].remove();
+    //             }
 
-        hideList();
+    //     for(let i = 0; i < filterInputValues.length; i++) {
+    //         filterInputValues[i].value = null;
+    //     }
+
+    //     hideList();
     
-    })
+    // })
    
 })
 
@@ -515,7 +546,8 @@ function oneFunction(){
         brewedBtInput = ""
     }else{
         filterApplied = true;
-        brewedBtInput = "brewed_before=" + document.getElementById('bbt').value + "&"
+        //brewedBtInput = "brewed_before=" + document.getElementById('bbt').value + "&"
+        brewedBtInput = "brewed_before=" + (document.getElementById('bbt').value).slice(5,8) + (document.getElementById('bbt').value).slice(0,4) + "&"
     }
         
     if (document.getElementById('bat').value === "") {

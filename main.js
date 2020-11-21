@@ -325,7 +325,7 @@ let createList = async function (userInput, advancedSr) {
         //     for(let i = 0; i < list.length; i++) {
         //         list[i].remove();
         //     }
-        //      //tar bort page counter
+        //     //tar bort page counter
         //     document.querySelector(".form-2-container").classList.add("hidden")
         // }, true)
             
@@ -422,6 +422,16 @@ let clicked = false;
     const applyButton = document.getElementById("apply-button");
     const clearButton = document.getElementById("clear-button");
 
+    clearButton.addEventListener('click', function(){
+            console.log("click!!!")
+            //tar bort alla elements
+            for(let i = 0; i < list.length; i++) {
+                list[i].remove();
+            }
+            //tar bort page counter
+            document.querySelector(".form-2-container").classList.add("hidden")
+        }, true)
+
 
     if(clicked == false) {
     
@@ -491,7 +501,6 @@ function oneFunction(){
     }else{
         filterApplied = true;
         hopsInput = "hops=" + document.getElementById('hops').value.toLowerCase().replace(/\s/, '_') + "&"
-        console.log(hopsInput)
     }
 
     

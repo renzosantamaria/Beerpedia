@@ -215,6 +215,10 @@ a:hover{
 
 }
 
+.form-2-container{
+    position: relative;
+}
+
 .form-2-container p{
     text-align: center;
     /* background-color: rgba(0, 0, 0, 0.8); */
@@ -287,12 +291,24 @@ a:hover{
     text-align: center;
     }
 
+
+
 .first-row,
 .second-row,
 .third-row{
     display: flex;
     justify-content: space-around;
 }
+
+.previous-next button:nth-child(4){
+    margin-left: 0px;
+        position: absolute;
+        right: 6px;
+        height: 40px;
+    }
+
+
+
 /*
 .search-main-wrapper{
     grid-column:2;
@@ -573,6 +589,7 @@ ul {
 
     .form-2-container{
         width: 300px;
+        position: relative;
     }
 
     .header-btn{

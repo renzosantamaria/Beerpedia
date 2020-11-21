@@ -286,7 +286,7 @@ let fetchByFilter = async function(userInput, advancedSr) {
         advancedSr = "";
     }
     let root = "https://api.punkapi.com/v2/beers?" + userInput + "&" + advancedSr + "per_page=10" + "&page=" + pageCounter;
-    pageCounter = 1
+    // pageCounter = 1
     document.querySelector(".current-page").innerHTML = pageCounter
     let request = await fetch(root)
     console.log(pageCounter)

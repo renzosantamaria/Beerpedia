@@ -522,7 +522,13 @@ function oneFunction(){
         brewedAtInput = ""
     }else{
         filterApplied = true;
-        brewedAtInput = "brewed_after=" + document.getElementById('bat').value + "&"
+        //let validateBrewedAfter = document.getElementById('bat').value
+        
+        //console.log(validateBrewedAfter.slice(5,8) + "" + validateBrewedAfter.slice(0,4))
+        //console.log("probando" + (document.getElementById('bat').value).slice(5,8) + (document.getElementById('bat').value).slice(0,4) )
+        
+        brewedAtInput = "brewed_after=" + (document.getElementById('bat').value).slice(5,8) + (document.getElementById('bat').value).slice(0,4) + "&"
+        console.log(brewedAtInput)
     }
     
     if (document.getElementById('abvGt').value === "") {

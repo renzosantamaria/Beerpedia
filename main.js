@@ -240,17 +240,21 @@ let fetchBySearch = async function (userInput, advancedSr, page) {
     if(advancedSr == undefined) {
         advancedSr = "";
     }
+    // pageCounter = 1
     let root = "https://api.punkapi.com/v2/beers?beer_name=" + userInput + "&" + advancedSr + "per_page=10"  + "&page=" + pageCounter;
-
+    
     let request = await fetch(root)
     let result = await request.json();
-    console.log(request);
-
+    // console.log(request);
     //Här lägger vi en event listener som rensar söklistan
     const clearButton = document.getElementById("clear-button");
     clearButton.addEventListener("click", function() {
-        // pageCounter = 1
+        pageCounter = 1
+        document.querySelector(".current-page").innerHTML = pageCounter
+        console.log(pageCounter)
+        
         console.log("clear button event listener");
+        
 
         let filterInputValues = document.querySelectorAll(".filter-wrapper input");
         filterApplied = false;
@@ -264,7 +268,8 @@ let fetchBySearch = async function (userInput, advancedSr, page) {
             filterInputValues[i].value = null;
         }
         hideList();
-        pageCounter = 1
+        searchInput.value = ""
+        
     
     })
 
@@ -281,9 +286,10 @@ let fetchByFilter = async function(userInput, advancedSr) {
         advancedSr = "";
     }
     let root = "https://api.punkapi.com/v2/beers?" + userInput + "&" + advancedSr + "per_page=10" + "&page=" + pageCounter;
-
+    pageCounter = 1
+    document.querySelector(".current-page").innerHTML = pageCounter
     let request = await fetch(root)
-    console.log(request)
+    console.log(pageCounter)
     let result = await request.json();
 
     
@@ -297,12 +303,13 @@ const pageContainer = document.querySelector(".form-2-container")
 
 let createList = async function (userInput, advancedSr) {
 
-    
+    // pageCounter = 1
 
     let fetchResult;
     
     if(userInput == 0 && filterApplied == true) {
-        // console.log("works")
+        //  console.log("works")
+        
         document.querySelector(".current-page").innerHTML = pageCounter
         console.log(pageCounter)
 
@@ -318,9 +325,12 @@ let createList = async function (userInput, advancedSr) {
     
     }
     else {
+        // pageCounter = 1
         fetchResult = await fetchBySearch(userInput, advancedSr);
         pageResultLength = fetchResult.length
-        console.log(fetchResult.length)
+        console.log("works")
+        // document.querySelector(".current-page").innerHTML = pageCounter
+        
         if(fetchResult.length == 0) {
             pageLimit = true;
         }
@@ -339,7 +349,7 @@ let createList = async function (userInput, advancedSr) {
 
 
     if(userInput.length > 2) {
-        console.log("true");
+        // console.log("true");
 
         //EN EVENT LISTENER SOM RENSAR LISTAN NÄR MAN CLICKAR PÅ SKÄRMEN
         // document.body.addEventListener('click', function(){

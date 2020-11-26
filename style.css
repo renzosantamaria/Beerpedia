@@ -11,13 +11,18 @@
     padding: 0 12%;
 }
 
+body{
+    padding: 0 12%;
+}
+
 header{
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
-    background-color: #023436;
-    background-color: rgba(0, 0, 0, 0.803);
-    color: #048980;
+    /* background-color: #023436;
+    background-color: rgba(0, 0, 0, 0.803); */
+    color: black;
+    border-bottom: 1px solid black;
 
 }
 
@@ -32,12 +37,12 @@ header{
 .btn-wrapper{
     display: flex;
     align-items: center;
-    padding-right: 40px;
+    /* padding-right: 40px; */
 }
 
 .header-btn{
     margin-left: 34px;
-    color:#048980;
+    /* color:#048980; */
     display:flex;
     font-size: 20px;
    
@@ -89,7 +94,7 @@ a:hover{
     grid-template-rows: auto auto;
     border-top-left-radius: 16%;
     border-bottom-right-radius: 16%;
-    background-color: antiquewhite;
+    background-color: rgb(250, 235, 215, 0.6);
     
 }
 
@@ -98,6 +103,10 @@ a:hover{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.babyYoda{
+    max-width: 300px;
 }
 
 .home-beer-card-name p:nth-child(1){
@@ -546,8 +555,26 @@ ul {
         display: none;
     }
 
+    .home-beer-card{
+        width: 240px;
+        height: 360px;
+    } 
+
+    .home-beer-card-text{
+        font-size: 18px;
+    }
+
+    .home-random-beer-button button{
+        font-size: 12px;
+    }
+
+    .babyYoda{
+        width: 185px;
+        height: 150px;
+    }
+
     .beer-card-img{
-        max-width: 200px;
+        height: 160px;
     }
 
     .info-beer-information{

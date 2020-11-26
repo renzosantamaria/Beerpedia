@@ -78,7 +78,7 @@ async function randomBeer() {
 
 function fillTheInfo(source) {
     if (source[0].image_url != null) {
-
+        document.querySelector(".beer-card-img").classList.remove("babyYoda")
         document.querySelector(".beer-card-img").src = source[0].image_url
         document.querySelector(".info-beer-card-img").src = source[0].image_url
         document.querySelector(".info-beer-card-img").style = "max-height: 400px"
@@ -90,7 +90,8 @@ function fillTheInfo(source) {
         
         // document.querySelector(".info-no-picture").classList.remove("hidden")
         document.querySelector(".beer-card-img").src = "images/baby-yoda.jpeg"
-        document.querySelector(".beer-card-img").style = "max-width: 300px"
+        // document.querySelector(".beer-card-img").style = "max-width: 300px"
+        document.querySelector(".beer-card-img").classList.add("babyYoda")
         //Info page beer card
         
         document.querySelector(".info-beer-card-img").src = "images/baby-yoda.jpeg"

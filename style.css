@@ -79,15 +79,18 @@ a:hover{
 .home-contet{
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 400px 160px 60px;
+    grid-template-rows: auto 160px 60px;
 }
 .home-beer-card{
     display: grid;
-    width: 340px;
+    width: 384px;
+    height: 475px;
     grid-template-rows: 1fr;
     grid-template-rows: auto auto;
-    border-radius: 20px;
-    border: 1px solid black;
+    border-top-left-radius: 16%;
+    border-bottom-right-radius: 16%;
+    background-color: antiquewhite;
+    
 }
 
 .home-beer-card-pic{
@@ -112,6 +115,7 @@ a:hover{
     flex-direction: column;
     justify-content: space-between;
     padding: 0 30px;
+    box-shadow: -29px 54px 37px -41px lightgrey;
 }
 
 
@@ -137,7 +141,7 @@ a:hover{
     padding: 10px;
     border-radius: 22px;
     background-color: rgba(0, 0, 0, 0.803);
-    color: #048980;
+    color: white;
     font-weight: bold;
     font-size: 16px;
 }
